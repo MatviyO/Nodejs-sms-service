@@ -15,19 +15,20 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cors());
-// app.use(expressWinston.logger({
-//     transports: [
-//         new winston.transports.Console()
-//     ],
-//     format: winston.format.combine(
-//         winston.format.colorize(),
-//         winston.format.json()
-//     ),
-//     meta: false,
-//     msg: "HTTP {{req.method}} {{req.url}}", expressFormat: true,
-//     colorize: false,
-//     ignoreRoute: function (req, res) { return false; }
-// }));
+app.use(expressWinston.logger({
+    transports: [
+        new winston.transports.Console()
+    ],
+    format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.json()
+    ),
+    meta: false,
+    msg: "HTTP {{req.method}} {{req.url}}",
+    expressFormat: true,
+    colorize: false,
+    ignoreRoute: function(req, res) { return false; }
+}));
 
 app.use('/api', routerTransaction)
 
@@ -58,4 +59,3 @@ function start() {
 }
 
 start()
-

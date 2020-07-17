@@ -1,9 +1,9 @@
 {
-  "port": 8008,
-  "jwtSecret": "linkin",
-  "baseUrl":  "http://127.0.0.1:8008",
-  "hostname": "127.0.0.1",
-  "login": "femmaservice@gmail.com",
-  "pass": "service313",
-  "apikey": "EB38634A-DEDB-CC90-67DF-02E8CB0000C3"
+    "port": 8008,
+    "jwtSecret": "linkin",
+    "baseUrl": "http://127.0.0.1:8008",
+    "hostname": "127.0.0.1",
+    "login": "femmaservice@gmail.com",
+    "pass": "service313",
+    "apikey": "EB38634A-DEDB-CC90-67DF-02E8CB0000C3"
 }

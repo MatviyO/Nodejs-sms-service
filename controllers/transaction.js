@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 const config = require('config')
-exports.postTransactions = async (req, res) => {
+exports.postTransactions = async(req, res) => {
     try {
         const LOGIN = config.get('login');
         const PASSWORD = config.get('pass');
@@ -11,19 +11,22 @@ exports.postTransactions = async (req, res) => {
         console.log(data)
         if (data.phone && data.message) {
             await fetch(
-                `https://sms.ru/sms/send?api_id=${APIKEY}&to[380934281256]=${TEXT}&json=1`, {
-                    method: 'POST',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    referrerPolicy: 'no-referrer',
-                    body: JSON.stringify(data)
-                })
+                    `https://sms.ru/sms/send?api_id=${APIKEY}&to[380934281256]=${TEXT}&json=1`, {
+                        method: 'POST',
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        referrerPolicy: 'no-referrer',
+                        body: JSON.stringify(data)
+                    })
                 .then(res => {
                     if (res.status >= 400) {
-                        throw new Error("Bad response from server");
+                        res.status(400).json({
+                            success: false,
+                            erro: "Bad response from server"
+                        });
                     }
                     return res.json();
                 })
@@ -49,12 +52,12 @@ exports.postTransactions = async (req, res) => {
     }
 };
 
-exports.getTransactions = async (req, res) => {
+exports.getTransactions = async(req, res) => {
     try {
         res.status(200).json('Get all smsService');
 
     } catch (e) {
-        res.status(500).json({message: `Error ${e.message}`})
+        res.status(500).json({ message: `Error ${e.message}` })
     }
 
 };
